@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajastin</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <label for="aktiivijakso">Aseta aktiivijakso:</label>
+    <select name="aktiivijakso" id="aktiivijakso">
+        <option value="10">10 sekuntia</option>
+        <option value="30">0,5 min</option>
+        <option value="60">1 min</option>
+        <option value="90">1,5 min</option>
+        <option value="120">2 min</option>
+        <option value="150">2,5 min</option>
+        <option value="180">3 min</option>
+    </select>
+    <br>
+
+    <label for="passiivijakso">Aseta passiivijakso:</label>
+    <select name="passiivijakso" id="passiivijakso">
+        <option value="10">10 sekuntia</option>
+        <option value="30">0,5 min</option>
+        <option value="60">1 min</option>
+        <option value="90">1,5 min</option>
+        <option value="120">2 min</option>
+        <option value="150">2,5 min</option>
+        <option value="180">3 min</option>
+    </select>
+    <br>
+
+    <label for="kierrokset">Kierrokset:</label>
+    <select name="kierrokset" id="kierrokset">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    
+    <div id="ajastin-naytto">00:00</div>
+    <button id="kaynnistysbutton" onclick="kaynnistaAjastin()">Käynnistä</button>
+    <br>
+    <br>
+
+    <table id="toteutuneet_jaksot" style="width:50%">
+        <tr>
+            <th>Jakso</th>
+            <th>Aika</th>
+        </tr>
+    </table>
+
+    <audio id="aanitesti">
+        <source src="aanitesti.m4a">
+    </audio>
+
+</body>
+
+</html>
