@@ -1,3 +1,6 @@
+// Luodaan AudioContext-objekti, jota käytetään piippauksen soittamiseen
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
 // Käynnistä ajastin -funktio
 
 async function kaynnistaAjastin() {
@@ -78,8 +81,9 @@ function lisaaRivi(jakso, alku_aika, loppu_aika) {
     }
 
 function soitaPiippaus(taajuus = 440, kesto = 0.1) {
-    // Luodaan audio-konteksti
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
     
     // Luodaan oskillaattori (äänen lähde) ja vahvistin (äänenvoimakkuus)
     const oscillator = audioCtx.createOscillator();
