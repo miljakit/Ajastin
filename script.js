@@ -1,9 +1,6 @@
 // Käynnistä ajastin -funktio
 
 async function kaynnistaAjastin() {
-
-    var audio = document.getElementById("aanitesti");
-    audio.play();
     
     var aktiiviaika_ss = parseInt(document.getElementById("aktiivijakso").value);
     var passiiviaika_ss = parseInt(document.getElementById("passiivijakso").value);
