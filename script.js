@@ -1,10 +1,10 @@
 // Käynnistä ajastin -funktio
 
 async function kaynnistaAjastin() {
-    
-    var aktiiviaika_ss = parseInt(document.getElementById("aktiivijakso").value);
-    var passiiviaika_ss = parseInt(document.getElementById("passiivijakso").value);
-    var kierrokset = parseInt(document.getElementById("kierrokset").value);
+
+    var aktiiviaika_ss = haeAika("aktiivijakso", "modifioitu_aktiivijakso");
+    var passiiviaika_ss = haeAika("passiivijakso", "modifioitu_passiivijakso");
+    var kierrokset = haeAika("kierrokset", "modifioitu_kierrokset");
 
     var raja_ajat = [0];
 
@@ -30,7 +30,7 @@ async function kaynnistaAjastin() {
             }
 
             if (i != 0) { 
-                lisaaRivi(jakso, muotoileAika(raja_ajat[i]));
+                lisaaRivi(jakso, muotoileAika(raja_ajat[i-1]),muotoileAika(raja_ajat[i]));
             }
 
             if (kulunut_aika_ss == raja_ajat.at(-1)) {
@@ -50,7 +50,7 @@ async function kaynnistaAjastin() {
     }
 }
 
-// Apufunktiot: odota, muotoileAika, lisaaRivi, soitaPiippaus
+// Apufunktiot: odota, muotoileAika, lisaaRivi, soitaPiippaus, haeAika
 
 const odota = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -65,15 +65,17 @@ function muotoileAika(kokonaissekunnit) {
     return `${mm}:${ss}`;
     }
 
-function lisaaRivi(jakso, aika) {
-const taulukko = document.getElementById("toteutuneet_jaksot");
-const uusiRivi = taulukko.insertRow(-1);
-const solu1 = uusiRivi.insertCell(0);
-const solu2 = uusiRivi.insertCell(1);
+function lisaaRivi(jakso, alku_aika, loppu_aika) {
+    const taulukko = document.getElementById("toteutuneet_jaksot");
+    const uusiRivi = taulukko.insertRow(-1);
+    const solu1 = uusiRivi.insertCell(0);
+    const solu2 = uusiRivi.insertCell(1);
+    const solu3 = uusiRivi.insertCell(2);
 
-solu1.textContent = jakso;
-solu2.textContent = aika;
-}
+    solu1.textContent = jakso;
+    solu2.textContent = alku_aika;
+    solu3.textContent = loppu_aika;
+    }
 
 function soitaPiippaus(taajuus = 440, kesto = 0.1) {
     // Luodaan audio-konteksti
@@ -99,3 +101,12 @@ function soitaPiippaus(taajuus = 440, kesto = 0.1) {
     gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + kesto);
     oscillator.stop(audioCtx.currentTime + kesto);
 }
+
+function haeAika(aikaSelect, aikaInput) {
+        if (document.getElementById(aikaSelect).disabled) {
+            var aika = parseInt(document.getElementById(aikaInput).value);
+        } else {
+            var aika = parseInt(document.getElementById(aikaSelect).value);
+        }
+        return aika;
+    }

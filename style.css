@@ -1,3 +1,7 @@
 th {
   text-align: left;
 }
+
+input[type="text"] {
+  width: 50px;
+}

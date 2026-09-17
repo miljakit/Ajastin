@@ -11,27 +11,33 @@
 
 <body>
     <label for="aktiivijakso">Aseta aktiivijakso:</label>
-    <select name="aktiivijakso" id="aktiivijakso">@
-        <option value="10">10 sekuntia</option>
+    <select name="aktiivijakso" id="aktiivijakso">
         <option value="30">0,5 min</option>
         <option value="60">1 min</option>
         <option value="90">1,5 min</option>
         <option value="120">2 min</option>
         <option value="150">2,5 min</option>
         <option value="180">3 min</option>
+        <option value="240">4 min</option>
+        <option value="300">5 min</option>
     </select>
+    <label for="modifioitu_aktiivijakso">Modifioitu (sekunteina):</label>
+    <input type="text" id="modifioitu_aktiivijakso">
     <br>
 
     <label for="passiivijakso">Aseta passiivijakso:</label>
     <select name="passiivijakso" id="passiivijakso">
-        <option value="10">10 sekuntia</option>
         <option value="30">0,5 min</option>
         <option value="60">1 min</option>
         <option value="90">1,5 min</option>
         <option value="120">2 min</option>
         <option value="150">2,5 min</option>
         <option value="180">3 min</option>
+        <option value="240">4 min</option>
+        <option value="300">5 min</option>
     </select>
+    <label for="modifioitu_passiivijakso">Modifioitu (sekunteina):</label>
+    <input type="text" id="modifioitu_passiivijakso">
     <br>
 
     <label for="kierrokset">Kierrokset:</label>
@@ -42,6 +48,8 @@
         <option value="4">4</option>
         <option value="5">5</option>
     </select>
+    <label for="modifioitu_kierrokset">Modifioitu:</label>
+    <input type="text" id="modifioitu_kierrokset">
     <br>
     <br>
     
@@ -50,12 +58,37 @@
     <br>
     <br>
 
-    <table id="toteutuneet_jaksot" style="width:50%">
+    <table id="toteutuneet_jaksot" style="width:100%">
         <tr>
             <th>Jakso</th>
-            <th>Aika</th>
+            <th>Alku</th>
+            <th>Loppu</th>
         </tr>
     </table>
+
+    <script>
+        const selectAktiivijakso = document.getElementById("aktiivijakso");
+        const selectPassiivijakso = document.getElementById("passiivijakso");
+        const selectKierrokset = document.getElementById("kierrokset");
+
+        const inputAktiivijakso = document.getElementById("modifioitu_aktiivijakso");
+        const inputPassiivijakso = document.getElementById("modifioitu_passiivijakso");
+        const inputKierrokset = document.getElementById("modifioitu_kierrokset");
+
+        // Select disabled kun modifioitu arvo kirjataan
+        inputAktiivijakso.addEventListener("input", function () {
+            selectAktiivijakso.disabled = inputAktiivijakso.value.trim() !== "";
+        });
+
+        inputPassiivijakso.addEventListener("input", function () {
+            selectPassiivijakso.disabled = inputPassiivijakso.value.trim() !== "";
+        });
+
+        inputKierrokset.addEventListener("input", function () {
+            selectKierrokset.disabled = inputKierrokset.value.trim() !== "";
+        });
+
+    </script>
 
 </body>
 
